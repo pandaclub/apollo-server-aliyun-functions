@@ -1,4 +1,3 @@
-import lambda from 'aws-lambda';
 import {
   GraphQLOptions,
   HttpQueryError,
@@ -8,14 +7,14 @@ import { Headers } from 'apollo-server-env';
 import { ValueOrPromise } from 'apollo-server-types';
 
 export interface LambdaGraphQLOptionsFunction {
-  (event: lambda.APIGatewayProxyEvent, context: lambda.Context): ValueOrPromise<
+  (event, context): ValueOrPromise<
     GraphQLOptions
   >;
 }
 
 export function graphqlLambda(
   options: GraphQLOptions | LambdaGraphQLOptionsFunction,
-): lambda.APIGatewayProxyHandler {
+) {
   if (!options) {
     throw new Error('Apollo Server requires options.');
   }
@@ -26,7 +25,7 @@ export function graphqlLambda(
     );
   }
 
-  const graphqlHandler: lambda.APIGatewayProxyHandler = (
+  const graphqlHandler = (
     event,
     context,
     callback,

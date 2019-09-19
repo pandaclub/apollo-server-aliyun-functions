@@ -1,15 +1,10 @@
-import {
-  APIGatewayProxyCallback,
-  APIGatewayProxyEvent,
-  Context as LambdaContext,
-} from 'aws-lambda';
 import { ApolloServerBase, GraphQLOptions, Config } from 'apollo-server-core';
 import {
   renderPlaygroundPage,
   RenderPageOptions as PlaygroundRenderPageOptions,
 } from '@apollographql/graphql-playground-html';
 
-import { graphqlLambda } from './lambdaApollo';
+import { graphqlLambda } from './aliyunApollo';
 import { Headers } from 'apollo-server-env';
 
 export interface CreateHandlerOptions {
@@ -41,8 +36,8 @@ export class ApolloServer extends ApolloServerBase {
   // provides typings for the integration specific behavior, ideally this would
   // be propagated with a generic to the super class
   createGraphQLServerOptions(
-    event: APIGatewayProxyEvent,
-    context: LambdaContext,
+    event,
+    context,
   ): Promise<GraphQLOptions> {
     return super.graphQLServerOptions({ event, context });
   }
@@ -98,9 +93,9 @@ export class ApolloServer extends ApolloServerBase {
     }
 
     return (
-      event: APIGatewayProxyEvent,
-      context: LambdaContext,
-      callback: APIGatewayProxyCallback,
+      event,
+      context,
+      callback,
     ) => {
       // We re-load the headers into a Fetch API-compatible `Headers`
       // interface within `graphqlLambda`, but we still need to respect the
@@ -183,7 +178,7 @@ export class ApolloServer extends ApolloServerBase {
         }
       }
 
-      const callbackFilter: APIGatewayProxyCallback = (error, result) => {
+      const callbackFilter = (error, result) => {
         callback(
           error,
           result && {

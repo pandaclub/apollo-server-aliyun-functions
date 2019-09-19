@@ -1,7 +1,7 @@
 {
-  "name": "apollo-server-lambda",
-  "version": "2.9.3",
-  "description": "Production-ready Node.js GraphQL server for AWS Lambda",
+  "name": "apollo-server-aliyun-functions",
+  "version": "1.0.0",
+  "description": "Production-ready Node.js GraphQL server for aliyun functions",
   "keywords": [
     "GraphQL",
     "Apollo",
@@ -13,11 +13,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-lambda"
-  },
-  "homepage": "https://github.com/apollographql/apollo-server#readme",
-  "bugs": {
-    "url": "https://github.com/apollographql/apollo-server/issues"
+    "url": "https://github.com/pandaclub/apollo-server-aliyun-functions"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,14 +22,10 @@
   },
   "dependencies": {
     "@apollographql/graphql-playground-html": "1.6.24",
-    "@types/aws-lambda": "^8.10.31",
-    "apollo-server-core": "file:../apollo-server-core",
-    "apollo-server-env": "file:../apollo-server-env",
-    "apollo-server-types": "file:../apollo-server-types",
+    "apollo-server-core": "*",
+    "apollo-server-env": "*",
+    "apollo-server-types": "*",
     "graphql-tools": "^4.0.0"
-  },
-  "devDependencies": {
-    "apollo-server-integration-testsuite": "file:../apollo-server-integration-testsuite"
   },
   "peerDependencies": {
     "graphql": "^0.12.0 || ^0.13.0 || ^14.0.0"
